@@ -27,4 +27,4 @@ EXPOSE 8000
 RUN python manage.py migrate
 
 # Use gunicorn on port 8000
-CMD ["gunicorn", "--bind", ":8000", "--workers", "2", "core.wsgi"]
+CMD ["gunicorn", "--bind", ":8000", "--workers", "2", "django_project.wsgi"]
