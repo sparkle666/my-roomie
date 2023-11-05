@@ -1,3 +1,4 @@
+import profile
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 
@@ -10,10 +11,112 @@ class Interest(models.Model):
 
 
 class CustomUser(AbstractUser):
+
+    # Gender Choices
+    GENDER_CHOICES = [
+        ('Male', 'Male'),
+        ('Female', 'Female'),
+        ('Non-binary', 'Non-binary'),
+        ('Other', 'Other')
+    ]
+
+    # Lifestyle Choices
+    CLEANLINESS_CHOICES = [
+        ('Very neat', 'Very neat'),
+        ('Moderately neat', 'Moderately neat'),
+        ('Messy', 'Messy')
+    ]
+
+    SMOKING_CHOICES = [
+        ('Non-smoker', 'Non-smoker'),
+        ('Smoker', 'Smoker')
+    ]
+
+    PET_FRIENDLY_CHOICES = [
+        ('Pet-friendly', 'Pet-friendly'),
+        ('Not pet-friendly', 'Not pet-friendly')
+    ]
+
+    # Introverted/Extroverted Choices
+    INTROVERTED_CHOICES = [
+        ('Introverted', 'Introverted'),
+        ('Extroverted', 'Extroverted'),
+        ('Ambivert', 'Ambivert')
+    ]
+
+    # Conflict Resolution Style Choices
+    CONFLICT_RESOLUTION_CHOICES = [
+        ('Calm and diplomatic', 'Calm and diplomatic'),
+        ('Direct and assertive', 'Direct and assertive'),
+        ('Avoidant', 'Avoidant')
+    ]
+
+    # Communication Preferences Choices
+    COMMUNICATION_CHOICES = [
+        ('Open and direct', 'Open and direct'),
+        ('Polite and indirect', 'Polite and indirect'),
+        ('Non-confrontational', 'Non-confrontational')
+    ]
+
+    # Expense Splitting Preferences Choices
+    EXPENSE_SPLITTING_CHOICES = [
+        ('Equally', 'Equally'),
+        ('Based on usage', 'Based on usage')
+    ]
+
+    # Grocery Sharing Preferences Choices
+    GROCERY_SHARING_CHOICES = [
+        ('Open to sharing', 'Open to sharing'),
+        ('Prefer separate', 'Prefer separate')
+    ]
+
+    # Lease Flexibility Choices
+    LEASE_FLEXIBILITY_CHOICES = [
+        ('Flexible', 'Flexible'),
+        ('Not flexible', 'Not flexible')
+    ]
+
+    # Room Furniture Preference Choices
+    ROOM_FURNITURE_CHOICES = [
+        ('Furnished', 'Furnished'),
+        ('Unfurnished', 'Unfurnished')
+    ]
+    ROOM_TYPE_CHOICES = [
+        ('Self Contain', 'Self Contain'),
+        ('Flat House', 'Flat House')]
+
+    # Personal Information
+    age = models.PositiveIntegerField()
+    gender = models.CharField(max_length=20, choices=GENDER_CHOICES)
     phone_number = models.CharField(max_length=200)
     location = models.CharField(max_length=200)
     bio = models.CharField(max_length=200)
-    interests = models.ManyToManyField(Interest, blank=True)
+    interests = models.ManyToManyField(Interest, blank=True, null=True)
+    profile_photo = models.ImageField(upload_to="images")
+
+    # Lifestyle Preferences
+    cleanliness_level = models.CharField(
+        max_length=20, choices=CLEANLINESS_CHOICES, null=True)
+    dietary_preferences = models.CharField(max_length=200, null=True)
+    smoking_preference = models.CharField(
+        max_length=20, choices=SMOKING_CHOICES, null=True)
+    pet_friendly = models.CharField(
+        max_length=20, choices=PET_FRIENDLY_CHOICES, null=True)
+
+    # Personality and Compatibility
+    introverted_or_extroverted = models.CharField(
+        max_length=20, choices=INTROVERTED_CHOICES, null=True)
+    conflict_resolution_style = models.CharField(
+        max_length=20, choices=CONFLICT_RESOLUTION_CHOICES, null=True)
+    communication_preferences = models.CharField(
+        max_length=20, choices=COMMUNICATION_CHOICES, null=True)
+
+    # Room Preferences
+    room_type_preference = models.CharField(
+        max_length=20, choices=ROOM_TYPE_CHOICES, null=True)
+    specific_room_features = models.CharField(max_length=200, null=True)
+    room_furniture_preference = models.CharField(
+        max_length=20, choices=ROOM_FURNITURE_CHOICES, null=True)
 
     def __str__(self):
         return self.email
