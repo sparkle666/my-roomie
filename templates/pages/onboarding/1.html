@@ -2,7 +2,7 @@
 {% load static %}
 {% load crispy_forms_tags %}
 
-{% block title %}Home page{% endblock title %}
+{% block title %}Onboarding 1{% endblock title %}
 
 
 
@@ -13,7 +13,7 @@
         Before you continue, we will need more info to properly match you to a Roommate!!
     </div>
     <br>
-    <h1>User Profile Form</h1>
+    <h1>Add More Profile Information</h1>
     <form method="post">
         {% csrf_token %}
         {{ form|crispy}}

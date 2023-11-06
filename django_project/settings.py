@@ -169,7 +169,7 @@ AUTH_USER_MODEL = "accounts.CustomUser"
 SITE_ID = 1
 
 # https://docs.djangoproject.com/en/dev/ref/settings/#login-redirect-url
-LOGIN_REDIRECT_URL = "home"
+LOGIN_REDIRECT_URL = "onboarding_1"
 
 # https://django-allauth.readthedocs.io/en/latest/views.html#logout-account-logout
 ACCOUNT_LOGOUT_REDIRECT_URL = "home"
@@ -182,7 +182,7 @@ AUTHENTICATION_BACKENDS = (
 # https://django-allauth.readthedocs.io/en/latest/configuration.html
 ACCOUNT_SESSION_REMEMBER = True
 ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = False
-ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_USERNAME_REQUIRED = True
 ACCOUNT_AUTHENTICATION_METHOD = "email"
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_UNIQUE_EMAIL = True
@@ -190,4 +190,4 @@ ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_FORMS = {'signup': 'allauth.account.forms.SignupForm'}
 
 # settings.py
-ACCOUNT_ADAPTER = 'accounts.adapters.CustomAccountAdapter'
+# ACCOUNT_ADAPTER = 'accounts.adapters.CustomAccountAdapter'

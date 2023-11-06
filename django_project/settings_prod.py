@@ -33,7 +33,7 @@ INSTALLED_APPS = [
     "allauth.account",
     "crispy_forms",
     "crispy_bootstrap5",
-   
+
     # "debug_toolbar",
     # Local
     "accounts",
@@ -50,7 +50,7 @@ MIDDLEWARE = [
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
-    "django.middleware.clickjacking.XFrameOptionsMiddleware",    
+    "django.middleware.clickjacking.XFrameOptionsMiddleware",
 
 ]
 
@@ -164,7 +164,7 @@ AUTH_USER_MODEL = "accounts.CustomUser"
 SITE_ID = 1
 
 # https://docs.djangoproject.com/en/dev/ref/settings/#login-redirect-url
-LOGIN_REDIRECT_URL = "home"
+LOGIN_REDIRECT_URL = "onboarding_1"
 
 # https://django-allauth.readthedocs.io/en/latest/views.html#logout-account-logout
 ACCOUNT_LOGOUT_REDIRECT_URL = "home"
@@ -185,4 +185,4 @@ ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_FORMS = {'signup': 'allauth.account.forms.SignupForm'}
 
 # settings.py
-ACCOUNT_ADAPTER = 'accounts.adapters.CustomAccountAdapter'
+# ACCOUNT_ADAPTER = 'accounts.adapters.CustomAccountAdapter'

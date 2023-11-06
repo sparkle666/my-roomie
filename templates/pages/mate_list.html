@@ -1,10 +1,10 @@
-{% extends "_base.html" %}
+{% extends '_base.html' %}
 {% load static %}
 
 {% block content %}
-        {% if search_results %}
-            <p class="gt-headline">Search results for {{ query }}</p>
-            {% for hotel in search_results %}
+        <p class="gt-headline">Catch a glimpse of our glamourous hotels</p>
+        <div class="row">
+            {% for hotel in hotels %}
             <div class="col-lg-4 col-md-6 mb-4">
                 <div class="card card-dropshadow">
                     <img src="{{ hotel.featured_image.url }}" class="card-img-top" alt="{{ hotel.name }}">
@@ -27,14 +27,10 @@
                             {% endfor %}
                           </div>                          
                         <p class="card-text"><b>Price:</b> {{ hotel.price }} <span style="color: rgb(66, 66, 66);">/night</span></p>
-                        <a href="#" class="btn btn-primary">Check In</a>
+                        <a href="{% url 'hotel_detail' hotel.id %}" class="btn btn-primary">View</a>
                     </div>
                 </div>
             </div>
             {% endfor %}
-        
-        {% else %}
-            <p>Nothing to see here {{ query }}</p>
-        {% endif %}
-    
+        </div>
 {% endblock content %}

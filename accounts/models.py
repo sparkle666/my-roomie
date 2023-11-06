@@ -58,24 +58,6 @@ class CustomUser(AbstractUser):
         ('Non-confrontational', 'Non-confrontational')
     ]
 
-    # Expense Splitting Preferences Choices
-    EXPENSE_SPLITTING_CHOICES = [
-        ('Equally', 'Equally'),
-        ('Based on usage', 'Based on usage')
-    ]
-
-    # Grocery Sharing Preferences Choices
-    GROCERY_SHARING_CHOICES = [
-        ('Open to sharing', 'Open to sharing'),
-        ('Prefer separate', 'Prefer separate')
-    ]
-
-    # Lease Flexibility Choices
-    LEASE_FLEXIBILITY_CHOICES = [
-        ('Flexible', 'Flexible'),
-        ('Not flexible', 'Not flexible')
-    ]
-
     # Room Furniture Preference Choices
     ROOM_FURNITURE_CHOICES = [
         ('Furnished', 'Furnished'),
@@ -86,13 +68,13 @@ class CustomUser(AbstractUser):
         ('Flat House', 'Flat House')]
 
     # Personal Information
-    age = models.PositiveIntegerField()
-    gender = models.CharField(max_length=20, choices=GENDER_CHOICES)
-    phone_number = models.CharField(max_length=200)
-    location = models.CharField(max_length=200)
-    bio = models.CharField(max_length=200)
+    age = models.PositiveIntegerField(null=True)
+    gender = models.CharField(max_length=20, choices=GENDER_CHOICES, null=True)
+    phone_number = models.CharField(max_length=200, null=True)
+    location = models.CharField(max_length=200, null=True)
+    bio = models.CharField(max_length=200, null=True)
     interests = models.ManyToManyField(Interest, blank=True, null=True)
-    profile_photo = models.ImageField(upload_to="images")
+    profile_photo = models.ImageField(upload_to="images", null=True)
 
     # Lifestyle Preferences
     cleanliness_level = models.CharField(
@@ -114,7 +96,6 @@ class CustomUser(AbstractUser):
     # Room Preferences
     room_type_preference = models.CharField(
         max_length=20, choices=ROOM_TYPE_CHOICES, null=True)
-    specific_room_features = models.CharField(max_length=200, null=True)
     room_furniture_preference = models.CharField(
         max_length=20, choices=ROOM_FURNITURE_CHOICES, null=True)
 
