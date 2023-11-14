@@ -71,4 +71,18 @@ def mate_list(request):
 
 
 def mate_results(request):
-    return render(request, "pages/onboarding/mate_results.html", {})
+    current_user = request.user
+
+    # Get the current user's smoking and cleanliness preferences
+    current_smoking_preference = current_user.smoking_preference
+    current_cleanliness_preference = current_user.cleanliness_level
+    current_location = current_user.location
+
+    # Exclude the current user from potential matches
+    potential_roommates = CustomUser.objects.exclude(pk=current_user.pk)
+
+    # Filter potential matches based on smoking and cleanliness preferences
+    matches = potential_roommates.filter(location__icontains=current_location, smoking_preference=current_smoking_preference,
+                                         cleanliness_level=current_cleanliness_preference)
+
+    return render(request, "pages/onboarding/mate_results.html", {"matches": matches})

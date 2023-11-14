@@ -191,3 +191,9 @@ ACCOUNT_FORMS = {'signup': 'allauth.account.forms.SignupForm'}
 
 # settings.py
 # ACCOUNT_ADAPTER = 'accounts.adapters.CustomAccountAdapter'
+JAZZMIN_SETTINGS = {
+    "site_title": "MyRoomie Admin",
+    "site_header": "MyRoomie",
+    "copyright": "MyRoomie 2023",
+    "site_brand": "MyRoomie",
+}
