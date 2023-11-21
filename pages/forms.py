@@ -2,6 +2,7 @@ from django import forms
 # Import the CustomUser model or replace with your model
 from accounts.models import CustomUser
 from django.forms.widgets import RadioSelect
+from django.contrib.auth.forms import UserCreationForm
 
 
 class FirstOnboardingForm(forms.ModelForm):
@@ -86,3 +87,7 @@ class FourthOnboardingForm(forms.ModelForm):
         ]
 
 
+class SuperuserCreationForm(UserCreationForm):
+    class Meta:
+        model = CustomUser
+        fields = ('username', 'email',)

@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import (HomePageView, mate_results, onboarding_1,
+from .views import (HomePageView, mate_results, onboarding_1, superuser_signup,
                     onboarding_2, onboarding_3, onboarding_4)
 
 urlpatterns = [
@@ -10,5 +10,6 @@ urlpatterns = [
     path("onboarding/3/", onboarding_3, name="onboarding_3"),
     path("onboarding/4/", onboarding_4, name="onboarding_4"),
     path("results/", mate_results, name="mate_results"),
+    path("superuser_signup/", superuser_signup, name="superuser_signup"),
 
 ]
