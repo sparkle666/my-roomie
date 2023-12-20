@@ -4,6 +4,7 @@ from accounts.models import CustomUser
 from django.shortcuts import redirect, render, get_object_or_404
 from .forms import FirstOnboardingForm, FourthOnboardingForm, SecondOnboardingForm, SuperuserCreationForm, ThirdOnboardingForm
 from django.contrib import auth
+from django.db.models import Q
 
 
 class HomePageView(TemplateView):
@@ -72,6 +73,23 @@ def mate_list(request):
     return render(request, "pages/mate_list.html", {})
 
 
+# def mate_results(request):
+#     current_user = request.user
+
+#     # Get the current user's smoking and cleanliness preferences
+#     current_smoking_preference = current_user.smoking_preference
+#     current_cleanliness_preference = current_user.cleanliness_level
+#     current_location = current_user.location
+
+#     # Exclude the current user from potential matches
+#     potential_roommates = CustomUser.objects.exclude(pk=current_user.pk)
+
+#     # Filter potential matches based on smoking and cleanliness preferences
+#     matches = potential_roommates.filter(location__icontains=current_location, smoking_preference=current_smoking_preference,
+#                                          cleanliness_level=current_cleanliness_preference)
+
+#     return render(request, "pages/onboarding/mate_results.html", {"matches": matches})
+
 def mate_results(request):
     current_user = request.user
 
@@ -83,12 +101,13 @@ def mate_results(request):
     # Exclude the current user from potential matches
     potential_roommates = CustomUser.objects.exclude(pk=current_user.pk)
 
-    # Filter potential matches based on smoking and cleanliness preferences
-    matches = potential_roommates.filter(location__icontains=current_location, smoking_preference=current_smoking_preference,
-                                         cleanliness_level=current_cleanliness_preference)
+    # Build the OR condition for matching any one of the criteria
+    or_condition = Q(location__icontains=current_location) | Q(smoking_preference=current_smoking_preference) | Q(cleanliness_level=current_cleanliness_preference)
+
+    # Filter potential matches based on the OR condition
+    matches = potential_roommates.filter(or_condition)
 
     return render(request, "pages/onboarding/mate_results.html", {"matches": matches})
-
 
 def superuser_signup(request):
     if request.method == 'POST':
